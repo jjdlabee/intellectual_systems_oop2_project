@@ -4,9 +4,6 @@
  */
 
 package com.intellectual_systems.parser;
-
-import java.util.ArrayList;
-
 import com.intellectual_systems.model.*;
 
 import org.apache.commons.csv.CSVFormat;
@@ -15,7 +12,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.Reader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  *
@@ -54,7 +51,7 @@ public class CsvParser implements GameDataParser {
 
                 questions.add(question);
             }
-            
+
             for (Category category : categories) {
                 for (Question question : questions) {
                     if (question.getCategory().equals(category.getName())) {
@@ -63,6 +60,10 @@ public class CsvParser implements GameDataParser {
                 }
             }
         } catch (IOException e) {
+        }
+
+        for (Category category : categories) {
+            System.out.println(category);
         }
     }
 

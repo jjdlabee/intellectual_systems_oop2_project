@@ -29,4 +29,14 @@ public class Category {
     public void addQuestion(Question question) {
         this.questions.add(question);
     }
+
+    @Override
+    public String toString() {
+        String s = "Category{" + "name=" + name; 
+        for(Question q : questions) {
+            s += "\n\t" + q.toString();
+        }
+        s += "\n}";
+        return s;
+    }
 }
