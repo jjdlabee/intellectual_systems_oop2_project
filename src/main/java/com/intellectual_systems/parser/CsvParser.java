@@ -13,6 +13,7 @@ import java.io.Reader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.lang.NumberFormatException;
 
 /**
  *
@@ -31,22 +32,24 @@ public class CsvParser implements GameDataParser {
 
          try {
             Reader in = new FileReader(filePath);
-            Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+            Iterable<CSVRecord> records = CSVFormat.EXCEL.builder().setHeader().setSkipHeaderRecord(true).build().parse(in);
             for (CSVRecord record : records) {
                 ArrayList< String> choices = new ArrayList<>();
-                for (int i = 3; i < 7; i++) {
-                    choices.add(record.get(i));
+                for (char i = 'A'; i < 'E'; i++) {
+                    choices.add(record.get("Option"+String.valueOf(i)));
                 }
+
+                
                 Question question = new Question(
-                    record.get(2), // questionText
+                    record.get("Question"), // questionText
                     choices, // choices
-                    record.get(7), // answer
-                    record.get(0), // category
-                    Integer.parseInt(record.get(1)) // value
+                    record.get("CorrectAnswer"), // answer
+                    record.get("Category"), // category
+                    Integer.parseInt(record.get("Value"))
                 );
                 
-                if(categories.stream().noneMatch(c -> c.getName().equals(record.get(0)))) {
-                    categories.add(new Category(record.get(0)));
+                if(categories.stream().noneMatch(c -> c.getName().equals(record.get("Category")))) {
+                    categories.add(new Category(record.get("Category")));
                 }
 
                 questions.add(question);
@@ -59,7 +62,7 @@ public class CsvParser implements GameDataParser {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException e ) {
         }
 
         for (Category category : categories) {

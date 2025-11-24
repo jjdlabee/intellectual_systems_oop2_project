@@ -42,12 +42,16 @@ public class JsonParser implements GameDataParser {
                 }
 
                 Question question = new Question(
-                    (String) record.get("QuestionText"), // questionText
+                    (String) record.get("Question"), // questionText
                     choices, // choices
-                    (String) record.get("Answer"), // answer
+                    (String) record.get("CorrectAnswer"), // answer
                     (String) record.get("Category"), // category
                     ((Long) record.get("Value")).intValue() // value
                 );
+
+                if(categories.stream().noneMatch(c -> c.getName().equals(record.get("Category")))) {
+                    categories.add(new Category((String) record.get("Category")));
+                }
 
                 questions.add(question);
             }
