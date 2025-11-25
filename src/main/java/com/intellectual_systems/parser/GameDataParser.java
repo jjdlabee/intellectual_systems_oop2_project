@@ -4,11 +4,14 @@
  */
 
 package com.intellectual_systems.parser;
+import java.util.ArrayList;
+
+import com.intellectual_systems.model.Category;
 
 /**
  *
  * @author Jonathan
  */
 public interface GameDataParser {
-    void parse(String filePath);
+    ArrayList<Category> parse(String filePath);
 }

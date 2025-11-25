@@ -4,15 +4,17 @@
  */
 
 package com.intellectual_systems.parser;
-import com.intellectual_systems.model.*;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.intellectual_systems.model.Category;
+import com.intellectual_systems.model.Question;
 
 
 /**
@@ -22,7 +24,7 @@ import org.json.simple.parser.ParseException;
 public class JsonParser implements GameDataParser {
 
     @Override
-    public void parse(String filePath) {
+    public ArrayList<Category> parse(String filePath) {
         // Implementation for parsing JSON files will go here
         ArrayList<Category> categories = new ArrayList<>();
         ArrayList<Question> questions = new ArrayList<>();
@@ -66,6 +68,7 @@ public class JsonParser implements GameDataParser {
 
         } catch (IOException | ParseException e) {
         }
+        return categories;
     }
        
 }
