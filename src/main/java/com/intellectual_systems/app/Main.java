@@ -7,7 +7,7 @@ package com.intellectual_systems.app;
 
 import com.intellectual_systems.controller.GameEngine;
 import com.intellectual_systems.controller.GameState;
-import com.intellectual_systems.controller.state.LoadState;
+import com.intellectual_systems.controller.state.StartState;
 
 /**
  *
@@ -22,10 +22,10 @@ public class Main {
     public static void main(String[] args) {
         
 
-        GameState initialState = new LoadState();
+        GameState initialState = new StartState();
 
         GameEngine gameEngine = new GameEngine(initialState);
-        ((LoadState) initialState).setGameEngine(gameEngine);
+        ((StartState) initialState).setGameEngine(gameEngine);
         gameEngine.renderCurrentState();
     }
 }

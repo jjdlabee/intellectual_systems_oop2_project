@@ -16,10 +16,10 @@ import com.intellectual_systems.controller.GameState;
  * @author Jonathan
  */
 public class StartState implements GameState {
-    private final GameEngine gameEngine;
+    private GameEngine gameEngine;
     private static final Scanner scanner = new Scanner(System.in);
 
-    public StartState(GameEngine gameEngine) {
+    public void setGameEngine(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
     }
 
@@ -37,7 +37,7 @@ public class StartState implements GameState {
 
     @Override
     public void renderNextState() {
-        gameEngine.setState(new PlayerSetupState(gameEngine));
+        gameEngine.setState(new LoadState(gameEngine));
         gameEngine.renderCurrentState();
     }
 
