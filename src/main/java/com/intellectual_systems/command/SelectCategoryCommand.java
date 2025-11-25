@@ -4,11 +4,22 @@
  */
 
 package com.intellectual_systems.command;
+import com.intellectual_systems.controller.GameEngine;
 
 /**
  *
  * @author Jonathan
  */
 public class SelectCategoryCommand {
+    private final GameEngine gameEngine;
+    private final int categoryIndex;
 
+    public SelectCategoryCommand(GameEngine gameEngine, int categoryIndex) {
+        this.gameEngine = gameEngine;
+        this.categoryIndex = categoryIndex;
+    }
+
+    public void execute() {
+        gameEngine.selectCategory(categoryIndex);
+    }
 }
