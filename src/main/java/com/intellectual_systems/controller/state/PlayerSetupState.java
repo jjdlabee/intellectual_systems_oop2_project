@@ -5,12 +5,14 @@
 
 package com.intellectual_systems.controller.state;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.intellectual_systems.command.PlayerSetupCommand;
 import com.intellectual_systems.controller.GameEngine;
 import com.intellectual_systems.controller.GameState;
 import com.intellectual_systems.model.Player;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -44,9 +46,14 @@ public class PlayerSetupState implements GameState {
                 System.out.println("Player " + i + " named " + playerName + " has been set up.");
             }
 
-            gameEngine.setPlayers(players);
-            // After setup, transition to the next state, e.g., CategorySelectState
-            //gameEngine.setState(new CategorySelectState(gameEngine));
+            PlayerSetupCommand playerSetupCommand = new PlayerSetupCommand(this.gameEngine, players);
+            playerSetupCommand.execute();
         }
+    }
+
+    @Override
+    public void renderNextState() {
+        gameEngine.setState(new CategorySelectState(gameEngine));
+        gameEngine.renderCurrentState();
     }
 }

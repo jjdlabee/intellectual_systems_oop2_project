@@ -5,9 +5,10 @@
 
 package com.intellectual_systems.controller.state;
 
-import com.intellectual_systems.controller.GameState;
-import com.intellectual_systems.controller.GameEngine;
 import java.util.Scanner;
+
+import com.intellectual_systems.controller.GameEngine;
+import com.intellectual_systems.controller.GameState;
 
 /**
  *
@@ -21,7 +22,7 @@ public class CategorySelectState implements GameState {
     }
 
     @Override
-    public void render() {
+    public void renderCurrentState() {
         // Implementation for rendering the category select state
         System.out.println("Select a category for the game.");
         // Add logic to handle category selection
@@ -33,4 +34,11 @@ public class CategorySelectState implements GameState {
             // gameEngine.setState(new NextState(gameEngine));
         }
     }
+
+    @Override
+    public void renderNextState() {
+        // Transition to the next state after category selection
+        // gameEngine.setState(new NextState(gameEngine));
+    }
+
 }

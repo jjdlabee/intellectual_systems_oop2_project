@@ -6,6 +6,7 @@
 package com.intellectual_systems.command;
 
 import com.intellectual_systems.controller.GameEngine;
+import com.intellectual_systems.model.GameBoard;
 import com.intellectual_systems.parser.CsvParser;
 import com.intellectual_systems.parser.GameDataParser;
 import com.intellectual_systems.parser.JsonParser;
@@ -16,7 +17,7 @@ import com.intellectual_systems.parser.XmlParser;
  * @author Jonathan
  */
 public class LoadGameDataCommand implements Command {
-    private final GameEngine gameEngine;
+    private final GameEngine gameEngine; 
     private final String filePath;
     private final String format;
 
@@ -26,8 +27,11 @@ public class LoadGameDataCommand implements Command {
         this.format = format;
     }
 
-    @Override
-    public void execute() {
+    public void setGameBoard(GameBoard gameBoard) {
+        gameEngine.setGameBoard(gameBoard);
+    }
+
+    public void parse(){
         GameDataParser parser;
         if (format.equalsIgnoreCase("1")) {
             // Load JSON data
@@ -44,7 +48,20 @@ public class LoadGameDataCommand implements Command {
             return;
         }
 
-        parser.parse(filePath);
+        gameEngine.setCategories(parser.parse(filePath));
+    }
+
+    public void loadGameBoard(){
+        GameBoard gameBoard = new GameBoard(gameEngine.getCategories());
+        gameBoard.initializeBoard(gameEngine.getCategories());
+        gameBoard.loadQuestions(gameEngine.getCategories());
+        gameEngine.setGameBoard(gameBoard);
+    }
+
+    @Override
+    public void execute() {
+        parse();
+        loadGameBoard();
         gameEngine.renderNextState();
     }
 

@@ -5,7 +5,10 @@
 
 package com.intellectual_systems.command;
 
+import java.util.List;
+
 import com.intellectual_systems.controller.GameEngine;
+import com.intellectual_systems.model.Player;
 
 /**
  *
@@ -13,13 +16,20 @@ import com.intellectual_systems.controller.GameEngine;
  */
 public class PlayerSetupCommand implements Command {
     private final GameEngine gameEngine;
+    private final List<Player> players;
 
-    public PlayerSetupCommand(GameEngine gameEngine) {
+    public PlayerSetupCommand(GameEngine gameEngine, List<Player> players) {
         this.gameEngine = gameEngine;
+        this.players = players;
     }
 
     @Override
     public void execute() {
-        // Implementation for player setup command
+        if (players == null || players.isEmpty()) {
+            System.out.println("No players to set up.");
+            gameEngine.renderCurrentState();
+            return;
+        }
+        gameEngine.setPlayers(this.players);
     }
 }

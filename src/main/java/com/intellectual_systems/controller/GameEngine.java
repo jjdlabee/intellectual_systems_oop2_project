@@ -6,6 +6,8 @@
 package com.intellectual_systems.controller;
 import java.util.List;
 
+import com.intellectual_systems.model.Category;
+import com.intellectual_systems.model.GameBoard;
 import com.intellectual_systems.model.Player;
 
 
@@ -16,6 +18,8 @@ import com.intellectual_systems.model.Player;
 public class GameEngine {
     GameState state;
     private List<Player> players;
+    private List<Category> categories;
+    private GameBoard gameBoard;
 
     public GameEngine(GameState startState) {
         this.state = startState;
@@ -36,8 +40,22 @@ public class GameEngine {
     public List<Player> getPlayers() {
         return players;
     }
-
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public GameBoard getGameBoard(){
+        return gameBoard;
+    }
+
+    public void setGameBoard(GameBoard gameBoard){
+        this.gameBoard = gameBoard;
     }
 }
