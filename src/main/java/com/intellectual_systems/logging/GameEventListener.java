@@ -9,6 +9,6 @@ package com.intellectual_systems.logging;
  *
  * @author Jonathan
  */
-public class GameEventListener {
-
+public interface GameEventListener {
+    void updateOnGameEvent(GameEvent event);
 }

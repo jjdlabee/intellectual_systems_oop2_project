@@ -9,6 +9,11 @@ package com.intellectual_systems.logging;
  *
  * @author Jonathan
  */
-public class EventLogger {
+public class EventLogger implements GameEventListener {
+    @Override
+    public void updateOnGameEvent(GameEvent event) {
+        // Log the event details to console or a file
+        System.out.println("Game Event Occurred: " + event.toString());
+    }
 
 }

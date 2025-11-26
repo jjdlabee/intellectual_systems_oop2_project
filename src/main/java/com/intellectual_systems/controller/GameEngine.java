@@ -4,8 +4,10 @@
  */
 
 package com.intellectual_systems.controller;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.intellectual_systems.logging.GameEvent;
 import com.intellectual_systems.model.Category;
 import com.intellectual_systems.model.GameBoard;
 import com.intellectual_systems.model.Player;
@@ -17,16 +19,27 @@ import com.intellectual_systems.model.Player;
  */
 public class GameEngine {
     GameState state;
+    private String gameId;
+    private static int gamesPlayed = 0;
+
     private List<Player> players;
     private List<Category> categories;
+
     private GameBoard gameBoard;
     private TurnManager turnManager;
+    private final List<GameEvent> gameEvents;
 
     public GameEngine(GameState startState) {
         this.state = startState;
+        gamesPlayed++;
+        this.gameId = String.format("GAME%03d", gamesPlayed);
+        this.gameEvents = new ArrayList<>();
     }
 
     //Accessor methods
+    public String getGameId() {
+        return this.gameId;
+    }
     public List<Player> getPlayers() {
         return this.players;
     }
@@ -50,8 +63,15 @@ public class GameEngine {
     public int getTotalTurns() {
         return categories.size() * categories.get(0).getQuestions().size(); 
     }
+    public List<GameEvent> getGameEvents() {
+        return this.gameEvents;
+    }
 
     //Mutator methods
+    public void updateGameId() {
+        gamesPlayed++;
+        this.gameId = String.format("GAME%03d", gamesPlayed);
+    }
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
@@ -63,6 +83,9 @@ public class GameEngine {
     }
     public void setState(GameState state) {
         this.state = state;
+    }
+    public void addGameEvent(GameEvent event) {
+        this.gameEvents.add(event);
     }
 
     //Game state methods
