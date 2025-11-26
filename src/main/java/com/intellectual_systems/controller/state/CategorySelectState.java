@@ -37,7 +37,7 @@ public class CategorySelectState implements GameState {
             System.out.println("Category " + choice + " has been selected.");
             // // After selection, transition to the next state
             SelectCategoryCommand selectCategoryCommand = new SelectCategoryCommand(gameEngine, choice - 1);
-            selectCategoryCommand.execute();
+     //      selectCategoryCommand.execute();
             // // gameEngine.setState(new NextState(gameEngine));
         } catch(Exception e) {
             System.out.println("An error occurred: " + e.getMessage());

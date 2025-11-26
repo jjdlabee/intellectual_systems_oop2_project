@@ -18,8 +18,8 @@ public class SelectCategoryCommand {
         this.gameEngine = gameEngine;
         this.categoryIndex = categoryIndex;
     }
-
-    public void execute() {
-        gameEngine.selectCategory(categoryIndex);
-    }
 }
+//     public void execute() {
+//         gameEngine.selectCategory(categoryIndex);
+//     }
+// }
