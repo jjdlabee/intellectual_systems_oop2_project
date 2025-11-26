@@ -27,7 +27,6 @@ public class SelectCategoryCommand implements Command {
     public void execute() {
         String categoryName = gameEngine.getCategories().get(categoryIndex).getName();
         gameEngine.getTurnManager().getCurrentTurn().setCurrentCategory(categoryName);
-        gameEngine.getGameBoard().renderCategory(categoryName);
-        //gameEngine.renderNextState();
+        gameEngine.renderNextState();
     }
 }

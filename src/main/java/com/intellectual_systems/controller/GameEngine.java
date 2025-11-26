@@ -39,6 +39,14 @@ public class GameEngine {
     public TurnManager getTurnManager(){
         return this.turnManager;
     }
+    public Category getCategoryByName(String name) {
+        for (Category category : categories) {
+            if (category.getName().equals(name)) {
+                return category;
+            }
+        }
+        return null; // or throw an exception if preferred
+    }
 
     //Mutator methods
     public void setPlayers(List<Player> players) {

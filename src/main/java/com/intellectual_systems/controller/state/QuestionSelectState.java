@@ -7,6 +7,7 @@ package com.intellectual_systems.controller.state;
 
 import java.util.Scanner;
 
+import com.intellectual_systems.command.SelectQuestionCommand;
 import com.intellectual_systems.controller.GameEngine;
 import com.intellectual_systems.controller.GameState;
 
@@ -22,19 +23,31 @@ public class QuestionSelectState implements GameState {
         this.gameEngine = gameEngine;
     }
 
-    
-
     @Override
     public void renderCurrentState() {
-        // Implement the logic to render the question selection state
+        String categoryName = gameEngine.getTurnManager().getCurrentTurn().getCurrentCategory();
+        System.out.println(gameEngine.getGameBoard().renderCategory(categoryName));
         System.out.println("Question selection state rendering...");
-        
-        
+       try {
+            int i;
+            for(i = 0; i < gameEngine.getCategoryByName(categoryName).getQuestions().size(); i++){
+                System.out.println((i + 1) + ". " + gameEngine.getCategoryByName(categoryName).getQuestions().get(i).getValue());
+            }
+            System.out.print("Enter your choice (1-" + i + "): ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+            System.out.println("Question " + choice + " has been selected.");
+            SelectQuestionCommand selectQuestionCommand = new SelectQuestionCommand(gameEngine, categoryName, choice - 1);
+            selectQuestionCommand.execute();
+        } catch(Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            gameEngine.renderCurrentState();
+        }
     }
-
 
     @Override
     public void renderNextState() {
-        
+        gameEngine.setState(new AnswerState(gameEngine));
+        // gameEngine.renderCurrentState();
     }
 } 

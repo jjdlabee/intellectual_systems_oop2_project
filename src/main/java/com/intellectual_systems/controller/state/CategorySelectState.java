@@ -25,7 +25,7 @@ public class CategorySelectState implements GameState {
 
     @Override
     public void renderCurrentState() {
-        gameEngine.getGameBoard().renderEntireGameBoard();
+        System.out.println(gameEngine.getGameBoard().renderEntireGameBoard());
         System.out.println("Select a category for the game.");
        try {
             int i;
