@@ -34,16 +34,18 @@ public class QuestionSelectState implements GameState {
                 System.out.println((i + 1) + ". " + gameEngine.getCategoryByName(categoryName).getQuestions().get(i).getValue());
             }
             System.out.print("\nEnter your choice (1-" + i + "): ");
-            int choice = scanner.nextInt();
+            int choice = Integer.parseInt(scanner.next());
             scanner.nextLine(); 
 
             if (!Character.isDigit(Integer.toString(choice).charAt(0)) || (choice < 1 || choice > i)) {
-                throw new IllegalArgumentException("Invalid choice. Please select a valid question number.");
+                System.out.println("Invalid choice. Please select a valid question number.");
+                gameEngine.renderCurrentState();
+                return;
             }
             System.out.println("Question " + choice + " has been selected.");
             SelectQuestionCommand selectQuestionCommand = new SelectQuestionCommand(gameEngine, categoryName, choice - 1);
             selectQuestionCommand.execute();
-        } catch(IllegalArgumentException e) {
+        } catch(RuntimeException e) {
             System.out.println("An error occurred: " + e.getMessage());
             gameEngine.renderCurrentState();
         }

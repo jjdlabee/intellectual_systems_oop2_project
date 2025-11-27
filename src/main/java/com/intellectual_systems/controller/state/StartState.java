@@ -26,7 +26,7 @@ public class StartState implements GameState {
     @Override
     public void renderCurrentState() {
         // Implementation for rendering the start state
-        System.out.println("Welcome to the Game! Press Start to begin.");
+        System.out.println("Welcome to the Game! Type 'start' to begin.");
 
         if (scanner.hasNextLine()) {
             String input = scanner.nextLine();

@@ -27,22 +27,28 @@ public class CategorySelectState implements GameState {
     public void renderCurrentState() {
         System.out.println(gameEngine.getGameBoard().renderEntireGameBoard());
         System.out.println("Select a category for the game.");
-       try {
+
+        
+        
+        try {
             int i;
             for(i = 0; i < gameEngine.getCategories().size(); i++){
                 System.out.println((i + 1) + ". " + gameEngine.getCategories().get(i).getName());
             }
             System.out.print("\nEnter your choice (1-" + i + "): ");
-            int choice = scanner.nextInt();
+
+            int choice = Integer.parseInt(scanner.next());
             scanner.nextLine(); 
             
             if (!Character.isDigit(Integer.toString(choice).charAt(0)) || choice < 1 || choice > i) {
-                throw new IllegalArgumentException("Invalid choice. Please select a valid category number.");
+                System.out.println("Invalid choice. Please select a valid category number.");
+                gameEngine.renderCurrentState();
+            } else{
+                System.out.println("Category " + choice + " has been selected. \n");
+                SelectCategoryCommand selectCategoryCommand = new SelectCategoryCommand(gameEngine, choice - 1);
+                selectCategoryCommand.execute();
             }
-            System.out.println("Category " + choice + " has been selected. \n");
-            SelectCategoryCommand selectCategoryCommand = new SelectCategoryCommand(gameEngine, choice - 1);
-            selectCategoryCommand.execute();
-        } catch(IllegalArgumentException e) {
+        } catch(RuntimeException e) {
             System.out.println("An error occurred: " + e.getMessage());
             gameEngine.renderCurrentState();
         }
