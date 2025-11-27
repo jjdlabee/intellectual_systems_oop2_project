@@ -74,14 +74,13 @@ public class Turn {
 
     @Override
     public String toString() {
-        return "Turn{" +
-                "player=" + player.getUsername() +
-                ", turnNumber=" + turnNumber +
-                ", currentCategory='" + currentCategory + '\'' +
-                ", currentQuestion='" + currentQuestion + '\'' +
-                ", currentAnswer='" + currentAnswer + '\'' +
-                ", isCorrect=" + isCorrect +
-                ", currentQuestionValue=" + currentQuestionValue +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(player.getUsername()).append(" selected ")
+        .append(this.currentCategory).append(" for ")
+        .append(this.currentQuestionValue).append(" pts \n ");
+        sb.append("Question: ").append(this.currentQuestion).append("\n");
+        sb.append("Answer: ").append(this.currentAnswer).append(" - ").append(this.getIsCorrect()).append("\n");
+        sb.append("Score after turn: ").append(this.getPlayer().getUsername()).append(" - ").append(this.scoreAfterTurn).append("\n");
+        return sb.toString();
     }   
 }

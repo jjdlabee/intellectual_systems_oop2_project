@@ -20,6 +20,7 @@ public class EndTurnCommand implements Command {
 
     @Override
     public void execute() {
+        gameEngine.getGameSummary().addTurn(gameEngine.getTurnManager().getCurrentTurn());
         gameEngine.getTurnManager().nextTurn();
         gameEngine.renderNextState();
     }

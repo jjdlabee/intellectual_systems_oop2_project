@@ -10,6 +10,7 @@ import com.intellectual_systems.logging.EventLogger;
 import com.intellectual_systems.logging.GameEvent;
 import com.intellectual_systems.model.Category;
 import com.intellectual_systems.model.GameBoard;
+import com.intellectual_systems.model.GameSummary;
 import com.intellectual_systems.model.Player;
 import com.intellectual_systems.model.Turn;
 
@@ -30,6 +31,7 @@ public class GameEngine {
     private TurnManager turnManager;
     private final GameEvent gameEvent;
     private final EventLogger eventLogger;
+    private GameSummary gameSummary;
 
     public GameEngine(GameState startState) {
         this.state = startState;
@@ -41,21 +43,9 @@ public class GameEngine {
     }
 
     //Accessor methods
-    public String getGameId() {
-        return this.gameId;
-    }
-    public List<Player> getPlayers() {
-        return this.players;
-    }
-    public GameBoard getGameBoard(){
-        return this.gameBoard;
-    }
-    public List<Category> getCategories() {
-        return this.categories;
-    }
-    public TurnManager getTurnManager(){
-        return this.turnManager;
-    }
+    public String getGameId() { return this.gameId; }
+
+    public List<Player> getPlayers() { return this.players;}
     public Category getCategoryByName(String name) {
         for (Category category : categories) {
             if (category.getName().equals(name)) {
@@ -64,61 +54,53 @@ public class GameEngine {
         }
         return null; 
     }
-    public int getTotalTurns() {
-        return categories.size() * categories.get(0).getQuestions().size(); 
-    }
-    public GameEvent getGameEvent() {
-        return this.gameEvent;
-    }
-    public EventLogger getEventLogger() {
-        return this.eventLogger;
-    }
+    public GameBoard getGameBoard(){ return this.gameBoard; }
+    public List<Category> getCategories() {  return this.categories; }
+    public TurnManager getTurnManager(){ return this.turnManager; }
+
+    public int getTotalTurns() { return categories.size() * categories.get(0).getQuestions().size();  }
+    public GameEvent getGameEvent() { return this.gameEvent; }
+    public EventLogger getEventLogger() { return this.eventLogger; }
+    public GameSummary getGameSummary() { return this.gameSummary; }
 
     //Mutator methods
     public void updateGameId() {
         gamesPlayed++;
         this.gameId = String.format("GAME%03d", gamesPlayed);
     }
-    public void addPlayer(Player player) {
-        this.players.add(player);
-    }
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-    public void setGameBoard(GameBoard gameBoard){
-        this.gameBoard = gameBoard;
-    }
-    public void setState(GameState state) {
-        this.state = state;
-    }
+    public void addPlayer(Player player) { this.players.add(player);}
+    public void setPlayers(List<Player> players) { this.players = players; }
+    public void setCategories(List<Category> categories) { this.categories = categories; }
+
+    public void setGameBoard(GameBoard gameBoard){  this.gameBoard = gameBoard; }
+    public void setState(GameState state) { this.state = state;  }
+    public void addGameSummary(){ 
+        GameSummary gS= new GameSummary(this.gameId, this.players);
+        this.gameSummary = gS;
+     }
 
     //Logging methods
     public void addPlayerGameEvent(String activity, Turn turn) {
+
         this.gameEvent.newGameEvent(this.gameId, activity, turn);
-        GameEvent eventCopy = new GameEvent();
+        GameEvent eventCopy = new GameEvent(); // Prevents Duplicate Entries
         eventCopy.newGameEvent(this.gameEvent.getCaseID(), activity, turn);
         this.gameEvent.notifyEventListeners(eventCopy);
+
     }
     public void addSystemGameEvent(String activity) {
+
         this.gameEvent.newGameEvent(this.gameId, activity, null);
-        GameEvent eventCopy = new GameEvent();
+        GameEvent eventCopy = new GameEvent(); 
         eventCopy.newGameEvent(this.gameEvent.getCaseID(), activity, null);
         this.gameEvent.notifyEventListeners(eventCopy);
+
     }
 
     //Game state methods
-    public void renderCurrentState() {
-        state.renderCurrentState();
-    }
-    public void renderNextState() {
-        state.renderNextState();
-    }
+    public void renderCurrentState() { state.renderCurrentState(); }
+    public void renderNextState() { state.renderNextState(); }
 
-    public void initializeTurnManager(){
-        this.turnManager = new TurnManager(players);
-    }
+    public void initializeTurnManager(){this.turnManager = new TurnManager(players);}
 
 }

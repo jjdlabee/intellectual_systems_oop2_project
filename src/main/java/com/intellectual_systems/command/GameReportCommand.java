@@ -23,7 +23,7 @@ public class GameReportCommand implements Command {
     @Override
     public void execute() {
         // Implementation for generating game report in the specified format
-        System.out.println("Generating game report in " + format + " format...");
+        System.out.println(gameEngine.getGameSummary().toString());
         // Add logic to generate and save the report
 
         gameEngine.addSystemGameEvent("Generate Report");

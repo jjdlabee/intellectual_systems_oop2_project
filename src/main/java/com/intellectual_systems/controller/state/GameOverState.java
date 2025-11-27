@@ -39,7 +39,11 @@ public class GameOverState implements GameState {
         if (choice.equalsIgnoreCase("Y")) {
             gameEngine.updateGameId();
             renderNextState();
-        } 
+            return;
+        } else if (!choice.equalsIgnoreCase("N")) {
+            System.out.println("Invalid Input, Please try again...");
+            renderCurrentState();
+        }
         
         System.out.println("How would you like Game Report? (TXT/PDF/DOCX)");
         choice = scanner.next();

@@ -45,7 +45,9 @@ public class PlayerSetupCommand implements Command {
             EnterPlayerNameTurn.setCurrentAnswer(player.getUsername());
             gameEngine.addPlayerGameEvent("Enter Player Name", EnterPlayerNameTurn);
         }
-        
+
+        gameEngine.addGameSummary();
+
         gameEngine.renderNextState();
     }
 }
