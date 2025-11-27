@@ -13,7 +13,7 @@ import com.intellectual_systems.util.TimestampUtils;
 
 /**
  *
- * @author Jonathan
+ * @author Vinayak
  */
 public class GameEvent implements GameEventListener{
     private String caseID = "";
