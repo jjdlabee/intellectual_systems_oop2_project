@@ -53,7 +53,15 @@ public class XmlParser implements GameDataParser {
                     ArrayList<String> choices = new ArrayList<>();
                     NodeList optionsList = eElement.getElementsByTagName("Option");
                     for (int i = 0; i < optionsList.getLength(); i++) {
-                        choices.add(optionsList.item(i).getTextContent());
+                        Node optionNode = optionsList.item(i);
+
+                        if (optionNode.getNodeType() != Node.ELEMENT_NODE) {
+                            System.out.println("Skipping non-element node in options.");
+                            continue;
+                        } 
+                        Element optionElement = (Element) optionNode;
+                        choices.add(optionElement.getTextContent());
+                        System.out.println("Added choice: " + optionElement.getTextContent());
                     }
 
                     Question question = new Question(
