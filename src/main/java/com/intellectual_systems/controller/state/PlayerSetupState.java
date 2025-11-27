@@ -34,7 +34,7 @@ public class PlayerSetupState implements GameState {
         System.out.print("Enter number of players: ");
         int numPlayers = Integer.parseInt(scanner.nextLine());
 
-        if (numPlayers <= 0 || numPlayers > 4) {
+        if (!Character.isDigit(numPlayers) || numPlayers <= 0 || numPlayers > 4) {
             System.out.println("Invalid number of players. Please try again.");
             gameEngine.renderCurrentState();
         } else {

@@ -35,11 +35,14 @@ public class CategorySelectState implements GameState {
             System.out.print("\nEnter your choice (1-" + i + "): ");
             int choice = scanner.nextInt();
             scanner.nextLine(); 
-
+            
+            if (!Character.isDigit(choice) || choice < 1 || choice > i) {
+                throw new IllegalArgumentException("Invalid choice. Please select a valid category number.");
+            }
             System.out.println("Category " + choice + " has been selected. \n");
             SelectCategoryCommand selectCategoryCommand = new SelectCategoryCommand(gameEngine, choice - 1);
             selectCategoryCommand.execute();
-        } catch(Exception e) {
+        } catch(IllegalArgumentException e) {
             System.out.println("An error occurred: " + e.getMessage());
             gameEngine.renderCurrentState();
         }

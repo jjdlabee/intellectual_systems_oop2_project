@@ -40,7 +40,7 @@ public class AnswerState implements GameState {
             char choice = scanner.next().charAt(0);
             scanner.nextLine(); 
 
-            if (choice < 'A' || choice >= i) {
+            if (!Character.isAlphabetic(choice) || (choice < 'A' || choice >= i)) {
                 throw new IllegalArgumentException("Invalid choice. Please select a valid answer option.");
             }
 
