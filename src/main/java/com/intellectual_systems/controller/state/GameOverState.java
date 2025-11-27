@@ -37,9 +37,12 @@ public class GameOverState implements GameState {
         if (choice.equalsIgnoreCase("Y")) {
             gameEngine.updateGameId();
             renderNextState();
-        } else {
-            System.out.println("Thank you for playing!");
-        }
+        } 
+        
+        System.out.println("Printing game log to CSV...");
+        gameEngine.getEventLogger().LogEventsToCSV();
+        System.out.println("Thank you for playing!");
+        
     }
 
     @Override

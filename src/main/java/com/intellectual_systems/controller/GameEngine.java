@@ -4,8 +4,10 @@
  */
 
 package com.intellectual_systems.controller;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.intellectual_systems.logging.EventLogger;
 import com.intellectual_systems.logging.GameEvent;
 import com.intellectual_systems.model.Category;
 import com.intellectual_systems.model.GameBoard;
@@ -28,12 +30,16 @@ public class GameEngine {
     private GameBoard gameBoard;
     private TurnManager turnManager;
     private final GameEvent gameEvent;
+    private final EventLogger eventLogger;
+    private final ArrayList<GameEvent> eventLog = new ArrayList<>();
 
     public GameEngine(GameState startState) {
         this.state = startState;
         gamesPlayed++;
         this.gameId = String.format("GAME%03d", gamesPlayed);
         this.gameEvent = new GameEvent();
+        this.eventLogger = new EventLogger();
+        this.gameEvent.addListener(this.eventLogger);
     }
 
     //Accessor methods
@@ -66,6 +72,9 @@ public class GameEngine {
     public GameEvent getGameEvent() {
         return this.gameEvent;
     }
+    public EventLogger getEventLogger() {
+        return this.eventLogger;
+    }
 
     //Mutator methods
     public void updateGameId() {
@@ -88,9 +97,11 @@ public class GameEngine {
     //Logging methods
     public void addPlayerGameEvent(String activity, Turn turn) {
         this.gameEvent.newGameEvent(this.gameId, activity, turn);
+        this.gameEvent.notifyEventListeners(this.gameEvent);
     }
     public void addSystemGameEvent(String activity) {
         this.gameEvent.newGameEvent(this.gameId, activity, null);
+        this.gameEvent.notifyEventListeners(this.gameEvent);
     }
 
     //Game state methods

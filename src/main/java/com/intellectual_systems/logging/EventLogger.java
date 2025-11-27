@@ -13,17 +13,21 @@ import java.util.List;
  * @author Jonathan
  */
 public class EventLogger implements GameEventListener {
-    private List<GameEvent> eventLog = new ArrayList<>();
+    private final List<GameEvent> eventLog = new ArrayList<>();
 
     @Override
     public void updateOnGameEvent(GameEvent event) {
         // Log the event details to console or a file
         eventLog.add(event);
+        for (GameEvent e : eventLog) {
+            System.out.println(e.toString());
+        }
     }
 
     public void LogEventsToCSV() {
+        System.out.println("Test>>>>>>>>>>" + eventLog.size() + eventLog.get(2).toString());
         CSVLogger csvLogger = new CSVLogger("game_events_log.csv");
-        csvLogger.logGameEvents(eventLog);
+        csvLogger.logGameEvents(this.eventLog);
     }
 
 

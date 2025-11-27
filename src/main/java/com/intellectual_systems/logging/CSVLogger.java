@@ -5,10 +5,53 @@
 
 package com.intellectual_systems.logging;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author Jonathan
  */
 public class CSVLogger {
+    private final String filePath;
 
+    public CSVLogger(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public void logGameEvents(List<GameEvent> events) {
+        File file = new File(this.filePath);
+        boolean fileExistsAndNotEmpty = file.exists() && file.length() > 0;
+
+        // Open FileWriter in append mode so existing logs are not overwritten
+        try (FileWriter writer = new FileWriter(this.filePath, true)) {
+            // Write CSV header only if file is new/empty
+            if (!fileExistsAndNotEmpty) {
+                writer.append("Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result\n");
+            }
+
+            // Write each event (append)
+            for (GameEvent event : events) {
+                writer.append(event.getCaseID()).append(",");
+                writer.append(event.getTurn() != null ? event.getTurn().getPlayer().getUsername() : "N/A").append(",");
+                writer.append(event.getActivity()).append(",");
+                writer.append(event.getTimestamp()).append(",");
+                if (event.getTurn() != null) {
+                    writer.append(event.getTurn().getCurrentCategory()).append(",");
+                    writer.append(Integer.toString(event.getTurn().getCurrentQuestionValue())).append(",");
+                    writer.append(event.getTurn().getCurrentAnswer() != null ? event.getTurn().getCurrentAnswer() : "N/A").append(",");
+                    writer.append(Boolean.parseBoolean(event.getTurn().getIsCorrect()) ? "Correct" : "Incorrect");
+                } else {
+                    // write placeholders for the expected columns
+                    writer.append("N/A,N/A,N/A,N/A");
+                }
+                writer.append("\n");
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error writing to CSV file: " + e.getMessage());
+        }
+    }
 }
