@@ -18,7 +18,7 @@ import com.intellectual_systems.parser.XmlParser;
  */
 public class LoadGameDataCommand implements Command {
     private final GameEngine gameEngine; 
-    private final String filePath;
+    private String filePath;
     private final String format;
 
     public LoadGameDataCommand(GameEngine gameEngine, String filePath, String format) {
@@ -40,12 +40,21 @@ public class LoadGameDataCommand implements Command {
         if (format.equalsIgnoreCase("1")) {
             // Load JSON data
             parser = new JsonParser();
+            if(this.filePath.equals("default")){
+            this.filePath = "src/main/java/com/intellectual_systems/resources/sample_game_JSON.json";
+        }
         } else if (format.equalsIgnoreCase("2")) {
             // Load XML data
             parser = new XmlParser();
+            if(this.filePath.equals("default")){
+            this.filePath = "src/main/java/com/intellectual_systems/resources/sample_game_XML.xml";
+        }
         } else if (format.equalsIgnoreCase("3")) {
             // Load CSV data
             parser = new CsvParser();
+            if(this.filePath.equals("default")){
+            this.filePath = "src/main/java/com/intellectual_systems/resources/sample_game_CSV.csv";
+        }
         } else {
             System.out.println("Unsupported format: " + format);
             gameEngine.renderCurrentState();

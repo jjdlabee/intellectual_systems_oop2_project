@@ -18,13 +18,13 @@ public class EventLogger implements GameEventListener {
     @Override
     public void updateOnGameEvent(GameEvent event) {
         if(event.getActivity().equals("Select Player Count")){
-            
+
         }
         eventLog.add(event);
     }
 
     public void LogEventsToCSV() {
-        CSVLogger csvLogger = new CSVLogger("game_events_log.csv");
+        CSVLogger csvLogger = new CSVLogger("src/main/java/com/intellectual_systems/resources/game_events_log.csv");
         csvLogger.logGameEvents(this.eventLog);
     }
 

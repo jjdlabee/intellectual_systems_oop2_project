@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.intellectual_systems.model.Turn;
+import com.intellectual_systems.util.TimestampUtils;
 
 /**
  *
@@ -18,7 +19,7 @@ public class GameEvent implements GameEventListener{
     private String caseID = "";
     private String Activity = "";
     private Turn turn = null;
-    private final String Timestamp = "";
+    private String Timestamp = "";
     private final List<GameEventListener> listeners = new ArrayList<>();;
 
     public String getCaseID() {
@@ -38,6 +39,7 @@ public class GameEvent implements GameEventListener{
         this.caseID = caseID;
         this.Activity = activity;
         this.turn = turn;
+        this.Timestamp = TimestampUtils.getCurrentTimestamp();
     }
 
     public void addListener(GameEventListener listener) {

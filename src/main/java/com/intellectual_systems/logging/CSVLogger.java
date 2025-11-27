@@ -25,7 +25,6 @@ public class CSVLogger {
         File file = new File(this.filePath);
         boolean fileExistsAndNotEmpty = file.exists() && file.length() > 0;
 
-        // Open FileWriter in append mode so existing logs are not overwritten
         try (FileWriter writer = new FileWriter(this.filePath)) {
             // Write CSV header only if file is new/empty
             if (!fileExistsAndNotEmpty) {

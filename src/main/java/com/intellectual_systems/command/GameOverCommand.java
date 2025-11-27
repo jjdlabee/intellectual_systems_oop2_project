@@ -21,7 +21,7 @@ public class GameOverCommand implements Command {
     @Override
     public void execute() {
         gameEngine.addSystemGameEvent("Generate Event Log");
-        gameEngine.getEventLogger().LogEventsToCSV();
         gameEngine.addSystemGameEvent("Exit Game");
+        gameEngine.getEventLogger().LogEventsToCSV();
     }
 }

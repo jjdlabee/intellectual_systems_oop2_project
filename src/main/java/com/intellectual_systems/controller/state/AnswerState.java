@@ -41,14 +41,14 @@ public class AnswerState implements GameState {
             scanner.nextLine(); 
 
             if (choice < 'A' || choice >= i) {
-                throw new IllegalArgumentException("Invalid choice. Please select a valid option.");
+                throw new IllegalArgumentException("Invalid choice. Please select a valid answer option.");
             }
 
             System.out.println("Answer " + choice + " has been selected.");
 
             AnswerQuestionCommand answerQuestionCommand = new AnswerQuestionCommand(gameEngine, categoryName, value, choice);
             answerQuestionCommand.execute();
-        } catch(Exception e) {
+        } catch(IllegalArgumentException e) {
             System.out.println("An error occurred: " + e.getMessage());
             gameEngine.renderCurrentState();
         }

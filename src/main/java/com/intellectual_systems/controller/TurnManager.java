@@ -40,11 +40,8 @@ public class TurnManager {
         this.currentTurn = turn;
     }
 
-    
     public void nextTurn() {
         this.currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
         this.currentTurn = new Turn(players.get(currentPlayerIndex));
     }
-
-   
 }

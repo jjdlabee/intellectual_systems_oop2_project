@@ -1,19 +1,13 @@
-GAME001,System,Start Game,,N/A,N/A,N/A,N/A,N/A
-GAME001,System,Load File,,N/A,N/A,N/A,N/A,N/A
-GAME001,System,Select Player Count,,null,0,2,Incorrect,0,
-GAME001,jalfd,Enter Player Name,,null,0,jalfd,Incorrect,0,
-GAME001,ema,Enter Player Name,,null,0,ema,Incorrect,0,
-GAME001,jalfd,Select Category,,Control Structures,300,if,Incorrect,0,
-GAME001,jalfd,Select Question,,Control Structures,300,if,Incorrect,0,
-GAME001,jalfd,Answer Question,,Control Structures,300,if,Incorrect,0,
-GAME001,ema,Select Category,,Variables & Data Types,300,2,Correct,300,
-GAME001,ema,Select Question,,Variables & Data Types,300,2,Correct,300,
-GAME001,ema,Answer Question,,Variables & Data Types,300,2,Correct,300,
-GAME001,jalfd,Select Category,,Arrays,300,do-while,Incorrect,0,
-GAME001,jalfd,Select Question,,Arrays,300,do-while,Incorrect,0,
-GAME001,jalfd,Answer Question,,Arrays,300,do-while,Incorrect,0,
-GAME001,System,Generate Report,,N/A,N/A,N/A,N/A,N/A
-GAME001,System,Generate Event Log,,N/A,N/A,N/A,N/A,N/A
-GAME001,System,Exit Game,,N/A,N/A,N/A,N/A,N/A
-GAME001,System,Generate Report,,N/A,N/A,N/A,N/A,N/A
-GAME001,System,Generate Event Log,,N/A,N/A,N/A,N/A,N/A
+GAME001,System,Start Game,2025-11-27 00:33:37,N/A,N/A,N/A,N/A,N/A
+GAME001,System,Load File,2025-11-27 00:33:41,N/A,N/A,N/A,N/A,N/A
+GAME001,System,Select Player Count,2025-11-27 00:33:49,null,0,2,N/A,0,
+GAME001,jeff,Enter Player Name,2025-11-27 00:33:49,null,0,jeff,N/A,0,
+GAME001,flte,Enter Player Name,2025-11-27 00:33:49,null,0,flte,N/A,0,
+GAME001,jeff,Select Category,2025-11-27 00:33:52,Control Structures,300,for,N/A,0,
+GAME001,jeff,Select Question,2025-11-27 00:33:54,Control Structures,300,for,N/A,0,
+GAME001,jeff,Answer Question,2025-11-27 00:33:56,Control Structures,300,for,N/A,0,
+GAME001,flte,Select Category,2025-11-27 00:34:03,Control Structures,400,exit,N/A,0,
+GAME001,flte,Select Question,2025-11-27 00:34:03,Control Structures,400,exit,N/A,0,
+GAME001,flte,Answer Question,2025-11-27 00:34:05,Control Structures,400,exit,N/A,0,
+GAME001,System,Generate Report,2025-11-27 00:34:22,N/A,N/A,N/A,N/A,N/A
+GAME001,System,Generate Event Log,2025-11-27 00:34:22,N/A,N/A,N/A,N/A,N/A
