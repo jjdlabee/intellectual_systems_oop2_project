@@ -4,7 +4,6 @@
  */
 
 package com.intellectual_systems.controller;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.intellectual_systems.logging.EventLogger;
@@ -31,7 +30,6 @@ public class GameEngine {
     private TurnManager turnManager;
     private final GameEvent gameEvent;
     private final EventLogger eventLogger;
-    private final ArrayList<GameEvent> eventLog = new ArrayList<>();
 
     public GameEngine(GameState startState) {
         this.state = startState;
@@ -81,6 +79,9 @@ public class GameEngine {
         gamesPlayed++;
         this.gameId = String.format("GAME%03d", gamesPlayed);
     }
+    public void addPlayer(Player player) {
+        this.players.add(player);
+    }
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
@@ -97,11 +98,15 @@ public class GameEngine {
     //Logging methods
     public void addPlayerGameEvent(String activity, Turn turn) {
         this.gameEvent.newGameEvent(this.gameId, activity, turn);
-        this.gameEvent.notifyEventListeners(this.gameEvent);
+        GameEvent eventCopy = new GameEvent();
+        eventCopy.newGameEvent(this.gameEvent.getCaseID(), activity, turn);
+        this.gameEvent.notifyEventListeners(eventCopy);
     }
     public void addSystemGameEvent(String activity) {
         this.gameEvent.newGameEvent(this.gameId, activity, null);
-        this.gameEvent.notifyEventListeners(this.gameEvent);
+        GameEvent eventCopy = new GameEvent();
+        eventCopy.newGameEvent(this.gameEvent.getCaseID(), activity, null);
+        this.gameEvent.notifyEventListeners(eventCopy);
     }
 
     //Game state methods

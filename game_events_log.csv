@@ -38,3 +38,18 @@ GAME001,freak,Answer Question,,Control Structures,400,D,Incorrect
 GAME001,freak,Answer Question,,Control Structures,400,D,Incorrect
 GAME001,freak,Answer Question,,Control Structures,400,D,Incorrect
 GAME001,freak,Answer Question,,Control Structures,400,D,Incorrect
+GAME001,N/A,Start Game,,N/A,N/A,N/A,N/A
+GAME001,N/A,Load File,,N/A,N/A,N/A,N/A
+GAME001,jald,Player Setup,,Functions,200,D,Incorrect
+GAME001,N/A,Select Category,,N/A,N/A,N/A,N/A
+GAME001,jald,Select Question,,Functions,200,D,Incorrect
+GAME001,jald,Answer Question,,Functions,200,D,Incorrect
+GAME001,N/A,Select Category,,N/A,N/A,N/A,N/A
+GAME001,jae,Select Question,,Control Structures,400,B,Incorrect
+GAME001,jae,Answer Question,,Control Structures,400,B,Incorrect
+GAME001,N/A,Select Category,,N/A,N/A,N/A,N/A
+GAME001,jald,Select Question,,Control Structures,300,C,Incorrect
+GAME001,jald,Answer Question,,Control Structures,300,C,Incorrect
+GAME001,N/A,Select Category,,N/A,N/A,N/A,N/A
+GAME001,jae,Select Question,,Functions,500,B,Incorrect
+GAME001,jae,Answer Question,,Functions,500,B,Incorrect

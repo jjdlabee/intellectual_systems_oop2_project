@@ -38,7 +38,6 @@ public class GameEvent implements GameEventListener{
         this.caseID = caseID;
         this.Activity = activity;
         this.turn = turn;
-        notifyEventListeners(this);
     }
 
     public void addListener(GameEventListener listener) {

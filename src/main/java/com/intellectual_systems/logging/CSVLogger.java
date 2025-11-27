@@ -35,7 +35,7 @@ public class CSVLogger {
             // Write each event (append)
             for (GameEvent event : events) {
                 writer.append(event.getCaseID()).append(",");
-                writer.append(event.getTurn() != null ? event.getTurn().getPlayer().getUsername() : "N/A").append(",");
+                writer.append(event.getTurn() != null ? event.getTurn().getPlayer().getUsername() : "System").append(",");
                 writer.append(event.getActivity()).append(",");
                 writer.append(event.getTimestamp()).append(",");
                 if (event.getTurn() != null) {
