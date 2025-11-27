@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author Jonathan
+ * @author Vinayak
  */
 public class TimestampUtils {
     public static String getCurrentTimestamp() {
