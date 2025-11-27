@@ -5,7 +5,6 @@
 
 package com.intellectual_systems.logging;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -22,16 +21,10 @@ public class CSVLogger {
     }
 
     public void logGameEvents(List<GameEvent> events) {
-        File file = new File(this.filePath);
-        boolean fileExistsAndNotEmpty = file.exists() && file.length() > 0;
-
         try (FileWriter writer = new FileWriter(this.filePath)) {
-            // Write CSV header only if file is new/empty
-            if (!fileExistsAndNotEmpty) {
-                writer.append("Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result\n");
-            }
+            
+            writer.append("Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Turn\n");
 
-            // Write each event (append)
             for (GameEvent event : events) {
                 writer.append(event.getCaseID()).append(",");
                 if (event.getTurn() != null && event.getTurn().getPlayer() != null) {

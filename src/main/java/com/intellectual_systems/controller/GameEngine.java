@@ -77,7 +77,7 @@ public class GameEngine {
     public void addGameSummary(){ 
         GameSummary gS= new GameSummary(this.gameId, this.players);
         this.gameSummary = gS;
-     }
+    }
 
     //Logging methods
     public void addPlayerGameEvent(String activity, Turn turn) {

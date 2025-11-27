@@ -26,6 +26,8 @@ public class GameReportCommand implements Command {
 
     @Override
     public void execute() {
+        gameEngine.getGameSummary().addScores(gameEngine.getPlayers());
+
         if(format.equalsIgnoreCase("TXT")) {
             TxtReportGenerator txtReportGenerator = new TxtReportGenerator();
             txtReportGenerator.generateReport("src/main/java/com/intellectual_systems/resources/game_report.txt", gameEngine.getGameSummary().toString());
@@ -40,8 +42,6 @@ public class GameReportCommand implements Command {
             throw new IllegalArgumentException("Unsupported report format: " + format);
         }
         
-        System.out.println(gameEngine.getGameSummary().toString());
-
         gameEngine.addSystemGameEvent("Generate Report");
         gameEngine.renderNextState();
     }

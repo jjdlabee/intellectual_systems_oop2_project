@@ -1,0 +1,29 @@
+JEOPARDY PROGRAMMING GAME REPORT
+=================================
+
+Case ID: GAME001
+
+Players: jeff, fred
+
+Gameplay Summary:
+-----------------
+
+Turn 1: jeff selected Variables & Data Types for 300 pts 
+Question: What is the value of x after int x = 5/2;?
+Answer: 2 - Correct (+300 pts)
+Score after turn: jeff - 300
+
+Turn 2: fred selected Control Structures for 300 pts 
+Question: Which loop always executes at least once?
+Answer: do-while - Correct (+300 pts)
+Score after turn: fred - 300
+
+Turn 3: jeff selected Variables & Data Types for 100 pts 
+Question: Which of the following declares an integer variable in C++?
+Answer: int num; - Correct (+100 pts)
+Score after turn: jeff - 400
+
+
+Final Scores:
+jeff: 400
+fred: 300

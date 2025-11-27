@@ -24,7 +24,4 @@ public class EventLogger implements GameEventListener {
         CSVLogger csvLogger = new CSVLogger("src/main/java/com/intellectual_systems/resources/game_events_log.csv");
         csvLogger.logGameEvents(this.eventLog);
     }
-
-
-
 }
