@@ -28,14 +28,14 @@ public class GameReportCommand implements Command {
     public void execute() {
         if(format.equalsIgnoreCase("TXT")) {
             TxtReportGenerator txtReportGenerator = new TxtReportGenerator();
-            txtReportGenerator.generateReport("game_report.txt", gameEngine.getGameSummary().toString());
+            txtReportGenerator.generateReport("src/main/java/com/intellectual_systems/resources/game_report.txt", gameEngine.getGameSummary().toString());
         } else if(format.equalsIgnoreCase("DOCX")) {
             DocxReportGenerator docxReportGenerator = new DocxReportGenerator();
-            docxReportGenerator.generateReport("game_report.docx", gameEngine.getGameSummary().toString());
+            docxReportGenerator.generateReport("src/main/java/com/intellectual_systems/resources/game_report.docx", gameEngine.getGameSummary().toString());
         } else if(format.equalsIgnoreCase("PDF")) {
             // PDF report generation can be implemented here
             PdfReportGenerator pdfReportGenerator = new PdfReportGenerator();
-            pdfReportGenerator.generateReport("game_report.pdf", gameEngine.getGameSummary().toString());
+            pdfReportGenerator.generateReport("src/main/java/com/intellectual_systems/resources/game_report.pdf", gameEngine.getGameSummary().toString());
 
         } else {
             throw new IllegalArgumentException("Unsupported report format: " + format);

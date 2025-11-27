@@ -27,7 +27,7 @@ public class PdfReportGenerator implements ReportGenerator {
             document.add(new Paragraph(content));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error generating PDF report: " + e.getMessage());
         }
     }
 }
