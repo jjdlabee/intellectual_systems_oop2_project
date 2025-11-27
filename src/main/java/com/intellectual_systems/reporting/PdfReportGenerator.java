@@ -20,12 +20,12 @@ public class PdfReportGenerator implements ReportGenerator {
     @Override
     public void generateReport(String filePath, String content) {
         //Implementation for generating PDF report
-        try {
-            PdfWriter writer = new PdfWriter(filePath);
-            PdfDocument pdf = new PdfDocument(writer);
-            Document document = new Document(pdf);
+        try (PdfWriter writer = new PdfWriter(filePath);
+             PdfDocument pdf = new PdfDocument(writer);
+             Document document = new Document(pdf)) {
+
             document.add(new Paragraph(content));
-            document.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
