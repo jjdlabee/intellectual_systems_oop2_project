@@ -44,25 +44,27 @@ public class XmlParser implements GameDataParser {
             doc.getDocumentElement().normalize();
 
             NodeList nList = doc.getElementsByTagName("QuestionItem");
+            NodeList optionsList = doc.getElementsByTagName("Options");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
+                Node optionNode = optionsList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
 
                     ArrayList<String> choices = new ArrayList<>();
-                    NodeList optionsList = eElement.getElementsByTagName("Option");
-                    for (int i = 0; i < optionsList.getLength(); i++) {
-                        Node optionNode = optionsList.item(i);
 
-                        if (optionNode.getNodeType() != Node.ELEMENT_NODE) {
-                            System.out.println("Skipping non-element node in options.");
-                            continue;
-                        } 
+                    if (optionNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element optionElement = (Element) optionNode;
-                        choices.add(optionElement.getTextContent());
-                        System.out.println("Added choice: " + optionElement.getTextContent());
+
+                        for (int i = 0; i < optionNode.getChildNodes().getLength(); i++) {
+                            char optionChar = (char)('A' + i);
+                            choices.add(optionElement.getElementsByTagName("Option" + optionChar).item(0).getTextContent());
+                            System.out.println("Added choice Option " + optionChar + ": " + optionElement.getElementsByTagName("Option" + optionChar).item(0).getTextContent());
+                        }
                     }
+
+                    System.out.println("Total choices added: " + choices.size());
 
                     Question question = new Question(
                         eElement.getElementsByTagName("QuestionText").item(0).getTextContent(), // questionText
